@@ -6,8 +6,8 @@
 
 #define UNIMPLEMENTED printf("%s (%s %d) UNIMPLEMENTED\n",__func__,__FILE__,__LINE__);
 
+#include <Button.h>
 #include <CheckBox.h>
-#include <PictureButton.h>
 #include <RadioButton.h>
 
 #include <stdlib.h>
@@ -51,45 +51,15 @@ static int beToggleGetCheck(Ihandle* ih)
     return control->Value();
 }
 
-static BPicture* getPicture(Ihandle* ih, const char* name, int make_inactive, bool make_enabled = false)
-{
-  BPictureButton* button = (BPictureButton*)ih->handle;
-
-  if (name)
-  {
-	BBitmap* bitmap = (BBitmap*)iupImageGetImage(name, ih, make_inactive);
-	BPicture* picture = new BPicture();
-	button->LockLooper();
-
-	button->BeginPicture(picture);
-
-	// TODO use control look classes to draw a proper button border instead
-	if(make_enabled) {
-	  button->SetHighColor(ui_color(B_PANEL_TEXT_COLOR));
-	  button->StrokeRect(button->Bounds());
-	}
-
-	button->DrawBitmapAsync(bitmap);
-
-	button->EndPicture();
-
-	button->UnlockLooper();
-
-	return picture;
-  }
-
-  return NULL;
-}
-
 static void beToggleUpdateImage(Ihandle* ih, int active, int check)
 {
   char* name;
-  BPicture* pic;
-  BPictureButton* button = (BPictureButton*)ih->handle;
+  BButton* button = (BButton*)ih->handle;
 
-  pic = getPicture(ih, iupAttribGet(ih, "IMAGE"), 0);
-  button->SetEnabledOff(pic);
+  BBitmap* bitmap = (BBitmap*)iupImageGetImage(iupAttribGet(ih, "IMAGE"), ih, check);
+  button->SetIcon(bitmap);
 
+#if 0
   name = iupAttribGet(ih, "IMINACTIVE");
   if (name)
   	pic = getPicture(ih, name, 0);
@@ -104,6 +74,7 @@ static void beToggleUpdateImage(Ihandle* ih, int active, int check)
   else
     pic = getPicture(ih, iupAttribGet(ih, "IMAGE"), 0, true);
   button->SetEnabledOn(pic);
+#endif
 }
 
 
@@ -241,10 +212,7 @@ static int gtkToggleMapMethod(Ihandle* ih)
   {
     ih->data->type = IUP_TOGGLE_IMAGE;
 	// The pictures will be set only later, from the image callbacks.
-	BPicture* empty = new BPicture();
-	ih->handle = (InativeHandle*)new BPictureButton(BRect(0,0,10,10), "PictureButton", empty, empty, NULL,
-	  B_TWO_STATE_BUTTON);
-	delete empty;
+	ih->handle = (InativeHandle*)new BButton(BRect(0,0,10,10), "PictureButton", NULL, NULL);
   }
   else
   {
@@ -254,6 +222,9 @@ static int gtkToggleMapMethod(Ihandle* ih)
       ih->handle = (InativeHandle*)new BRadioButton(BRect(0,0,10,10), "Radio", NULL, NULL);
     } else {
       ih->handle = (InativeHandle*)new BCheckBox(BRect(0,0,10,10), "Checkbox", NULL, NULL);
+      if (iupAttribGetBoolean(ih, "3STATE")) {
+		  ((BCheckBox*)ih->handle)->SetPartialStateToOff(true);
+	  }
     }
   }
 

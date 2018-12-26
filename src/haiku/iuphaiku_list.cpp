@@ -420,14 +420,20 @@ static char* gtkListGetReadOnlyAttrib(Ihandle* ih)
 
 static int gtkListSetImageAttrib(Ihandle* ih, int id, const char* value)
 {
-	UNIMPLEMENTED
+  UNIMPLEMENTED
   return 0;
 }
 
 void* iupdrvListGetImageHandle(Ihandle* ih, int id)
 {
-	UNIMPLEMENTED
-		return NULL;
+  UNIMPLEMENTED
+  return NULL;
+}
+
+int iupdrvListSetImageHandle(Ihandle* ih, int id, void* hImage)
+{
+  UNIMPLEMENTED
+  return 0;
 }
 
 /*********************************************************************************/
@@ -526,7 +532,7 @@ void iuphaikuListInvoked(Ihandle* ih, int item)
   IFnis cb = (IFnis) IupGetCallback(ih, "DBLCLICK_CB");
   if (cb)
   {
-    iupListSingleCallDblClickCallback(ih, cb, item+1);  /* IUP starts at 1 */
+    iupListSingleCallDblClickCb(ih, cb, item+1);  /* IUP starts at 1 */
   }
 }
 
@@ -543,7 +549,7 @@ void iuphaikuListSelected(Ihandle* ih, int item)
     IFnsii cb = (IFnsii) IupGetCallback(ih, "ACTION");
     if (cb)
     {
-      iupListSingleCallActionCallback(ih, cb, item+1);  /* IUP starts at 1 */
+      iupListSingleCallActionCb(ih, cb, item+1);  /* IUP starts at 1 */
     }
   } else {
     IFns multi_cb = (IFns)IupGetCallback(ih, "MULTISELECT_CB");

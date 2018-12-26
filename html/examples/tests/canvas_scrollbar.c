@@ -204,7 +204,7 @@ int main(int argc, char* argv[])
 {
   IupOpen(&argc, &argv);
 
-  CanvasScrollbarTest();
+  CanvasScrollbarTest1();
 
   IupMainLoop();
 

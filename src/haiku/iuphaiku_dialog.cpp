@@ -100,16 +100,6 @@ void iupdrvDialogGetDecoration(Ihandle* ih, int *border, int *caption, int *menu
   static int native_border = 0;
   static int native_caption = 0;
 
-  int has_titlebar = iupAttribGetBoolean(ih, "RESIZE")  || /* GTK and Motif only */
-                     iupAttribGetBoolean(ih, "MAXBOX")  ||
-                     iupAttribGetBoolean(ih, "MINBOX")  ||
-                     iupAttribGetBoolean(ih, "MENUBOX") || 
-                     IupGetAttribute(ih, "TITLE"); /* must use IupGetAttribute to check from the native implementation */
-
-  int has_border = has_titlebar ||
-                   iupAttribGetBoolean(ih, "RESIZE") ||
-                   iupAttribGetBoolean(ih, "BORDER");
-
   *menu = gtkDialogGetMenuSize(ih);
 
   if (ih->handle && iupdrvIsVisible(ih))
@@ -222,7 +212,7 @@ static char* beDialogGetTitleAttrib(Ihandle* ih)
   if (!title || title[0] == 0)
     return NULL;
   else
-    return iupStrGetMemoryCopy(title);
+    return strdup(title);
 }    
 
 /****************************************************************

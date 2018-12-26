@@ -89,6 +89,13 @@ int iupdrvGetWindowDecor(void* wnd, int *border, int *caption)
   return 0;
 }
 
+void iupdrvAddScreenOffset(int *x, int *y, int add)
+{
+  (void)x;
+  (void)y;
+  (void)add;
+}
+
 void iupdrvGetScreenSize(int *width, int *height)
 {
 	BScreen screen;
@@ -137,7 +144,7 @@ void iupdrvGetKeyState(char* key)
 
 char* iupdrvLocaleInfo(void)
 {
-  return iupStrGetMemoryCopy(nl_langinfo(CODESET));
+  return strdup(nl_langinfo(CODESET));
 }
 
 /* Everything below is copypasted from mot/iupunix.c, but that one depends on X11 :( */

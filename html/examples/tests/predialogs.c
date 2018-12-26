@@ -72,6 +72,11 @@ static void drawTest(Ihandle* ih)
 
   SelectObject(hDC, oldPen);
 }
+#elif defined(__HAIKU__)
+static void drawTest(Ihandle* ih)
+{
+	fprintf(stderr,"FIXME implement %s %s\n", __FILE__, __func__);
+}
 #else
 #include <X11/Xlib.h>
 

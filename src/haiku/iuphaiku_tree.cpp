@@ -382,6 +382,11 @@ void iupdrvTreeUpdateMarkMode(Ihandle *ih)
 }
 
 
+void iupdrvTreeDragDropCopyNode(Ihandle* src, Ihandle* dst, InodeHandle *itemSrc, InodeHandle *itemDst)
+{
+	UNIMPLEMENTED
+}
+
 /*****************************************************************************/
 
 static int haikuTreeMapMethod(Ihandle* ih)

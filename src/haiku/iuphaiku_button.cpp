@@ -30,34 +30,6 @@
 
 #include "iuphaiku_drv.h"
 
-class IUPButton: public BButton
-{
-  public:
-	IUPButton(BMessage* msg)
-	  : BButton(BRect(0,0,10,10), "button", NULL, msg)
-	  , fBitmap(NULL)
-	{
-	}
-
-	void Draw(BRect updateRect)
-	{
-	  BButton::Draw(updateRect);
-	  if (fBitmap) {
-		MovePenTo(6, 6);
-		SetDrawingMode(B_OP_ALPHA);
-	    DrawBitmapAsync(fBitmap);
-	  }
-	}
-
-	void SetBitmap(BBitmap* bitmap)
-	{
-      fBitmap = bitmap;
-	}
-
-  private:
-	BBitmap* fBitmap;
-};
-
 void iupdrvButtonAddBorders(int *x, int *y)
 {
   // TODO can we use BControlLook here ?
@@ -137,12 +109,12 @@ static int gtkButtonSetStandardFontAttrib(Ihandle* ih, const char* value)
 /* FIXME this is copypasted from the same method for Toggle. we should share it. */
 static void gtkButtonSetPixbuf(Ihandle* ih, const char* name, int make_inactive)
 {
-  IUPButton* button = (IUPButton*)ih->handle;
+  BButton* button = (BButton*)ih->handle;
 
   if (name)
   {
 	BBitmap* bitmap = (BBitmap*)iupImageGetImage(name, ih, make_inactive);
-	button->SetBitmap(bitmap);
+	button->SetIcon(bitmap);
   }
 }
 
@@ -225,7 +197,7 @@ static int gtkButtonMapMethod(Ihandle* ih)
   BMessage* msg = new BMessage(buttonInvoke);
   msg->AddPointer("iHandle", ih);
 
-  BButton* button = new IUPButton(msg);
+  BButton* button = new BButton(BRect(0,0,10,10), "button", title, msg);
 
   if (value)
   {
@@ -236,7 +208,6 @@ static int gtkButtonMapMethod(Ihandle* ih)
 	} 
   } else {
     ih->data->type = IUP_BUTTON_TEXT;
-	button->SetLabel(title);
   }
 
   ih->handle = (InativeHandle*)button;

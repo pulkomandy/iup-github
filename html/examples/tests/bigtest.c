@@ -25,7 +25,7 @@ export G_SLICE=always-malloc
 /* Must define BIG_TEST on the Project and include in the build all test files */
 #ifdef BIG_TEST
 void ButtonTest(void);
-void CanvasScrollbarTest(void);
+void CanvasScrollbarTest1(void);
 void CanvasTest(void);
 void CanvasCDDBufferTest(void);
 void CanvasCDSimpleTest(void);

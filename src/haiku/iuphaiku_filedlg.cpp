@@ -111,6 +111,9 @@ class FileHandler: public BLooper
 		sem_id lock;
 };
 
+int iupdrvIsFile(const char* name);
+int iupdrvIsDirectory(const char* name);
+
 static int gtkFileDlgPopup(Ihandle* ih, int x, int y)
 {
   file_panel_mode mode;

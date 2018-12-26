@@ -142,7 +142,13 @@ static int haikuTabsSetTabTitleAttrib(Ihandle* ih, int pos, const char* value)
 
 static int gtkTabsSetTabImageAttrib(Ihandle* ih, int pos, const char* value)
 {
-	UNIMPLEMENTED
+  UNIMPLEMENTED
+  return 1;
+}
+
+int iupdrvTabsIsTabVisible(Ihandle* child)
+{
+  UNIMPLEMENTED
   return 1;
 }
 
@@ -203,20 +209,20 @@ static void haikuTabsChildAddedMethod(Ihandle* ih, Ihandle* child)
 		BRect(0, 0, ih->currentwidth, ih->currentheight),
 		"IUPTabHolder", B_FOLLOW_ALL_SIDES, 0);
 
-    tabtitle = iupTabsAttribGetStrId(ih, "TABTITLE", pos);
+    tabtitle = iupAttribGetId(ih, "TABTITLE", pos);
     if (!tabtitle) 
     {
       tabtitle = iupAttribGet(child, "TABTITLE");
       if (tabtitle)
-        iupTabsAttribSetStrId(ih, "TABTITLE", pos, tabtitle);
+        iupAttribSetId(ih, "TABTITLE", pos, tabtitle);
     }
 
-    tabimage = iupTabsAttribGetStrId(ih, "TABIMAGE", pos);
+    tabimage = iupAttribGetId(ih, "TABIMAGE", pos);
     if (!tabimage) 
     {
       tabimage = iupAttribGet(child, "TABIMAGE");
       if (tabimage)
-        iupTabsAttribSetStrId(ih, "TABIMAGE", pos, tabimage);
+        iupAttribSetId(ih, "TABIMAGE", pos, tabimage);
     }
 
     if (!tabtitle && !tabimage)
