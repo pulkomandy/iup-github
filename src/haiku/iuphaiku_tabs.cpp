@@ -146,7 +146,7 @@ static int gtkTabsSetTabImageAttrib(Ihandle* ih, int pos, const char* value)
   return 1;
 }
 
-int iupdrvTabsIsTabVisible(Ihandle* child)
+int iupdrvTabsIsTabVisible(Ihandle* child, int pos)
 {
   UNIMPLEMENTED
   return 1;
@@ -281,7 +281,7 @@ static void haikuTabsChildAddedMethod(Ihandle* ih, Ihandle* child)
   }
 }
 
-static void gtkTabsChildRemovedMethod(Ihandle* ih, Ihandle* child)
+static void haikuTabsChildRemovedMethod(Ihandle* ih, Ihandle* child, int index)
 {
 	UNIMPLEMENTED
 }
@@ -362,7 +362,7 @@ void iupdrvTabsInitClass(Iclass* ic)
   /* Driver Dependent Class functions */
   ic->Map = haikuTabsMapMethod;
   ic->ChildAdded     = haikuTabsChildAddedMethod;
-  ic->ChildRemoved   = gtkTabsChildRemovedMethod;
+  ic->ChildRemoved   = haikuTabsChildRemovedMethod;
 
   /* Driver Dependent Attribute functions */
 

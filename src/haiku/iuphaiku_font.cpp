@@ -152,8 +152,8 @@ int iupdrvSetStandardFontAttrib(Ihandle* ih, const char* value)
   if(!bfont)
     return 1;
 
-  /* If FONT is changed, must update the SIZE attribute */
-  iupBaseUpdateSizeFromFont(ih);
+  /* If FONT is changed, must update the attributes */
+  iupBaseUpdateAttribFromFont(ih);
 
   /* FONT attribute must be able to be set before mapping, 
     so the font is enable for size calculation. */
@@ -162,9 +162,10 @@ int iupdrvSetStandardFontAttrib(Ihandle* ih, const char* value)
 	BHandler* handler = (BHandler*)ih->handle;
 	BView* view = viewFromHandler(handler);
 	if (!view) {
-		debugger("Invalid handle ! what is it ?");
+		fprintf(stderr, "%s Invalid handle ! what is it ?\n", __func__);
+	} else {
+		view->SetFont(bfont);
 	}
-	view->SetFont(bfont);
     //iupgtkFontUpdatePangoLayout(ih, gtkFontGetWidgetPangoLayout(ih));
   }
 

@@ -112,6 +112,9 @@ ifneq ($(findstring Win, $(TEC_SYSNAME)), )
   LIBS += cdgl iupglcontrols
   LDIR += $(CD)/lib/$(TEC_UNAME)
 else
+  ifneq ($(findstring Haiku, $(TEC_SYSNAME)), )
+    LIBS += cdgl iupglcontrols
+  else
   SLIB += $(CD_LIB)/libcdgl.a \
           $(IUP_LIB)/libiupglcontrols.a 
   ifneq ($(findstring CYGW, $(TEC_SYSNAME)), )
@@ -124,6 +127,7 @@ else
   ifdef USE_MOTIF
     LIBS += fontconfig
   endif  
+  endif
 endif
 
 USE_IUPCONTROLS = Yes
@@ -176,7 +180,7 @@ endif
 
 USE_IM = Yes
 ifdef USE_IM
-ifneq ($(findstring Win, $(TEC_SYSNAME)), )
+ifneq ($(findstring Haiku, $(TEC_SYSNAME)), )
   LIBS += iupim im_process
 else
   SLIB += $(IUP_LIB)/libiupim.a $(IM_LIB)/libim_process.a

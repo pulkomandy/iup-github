@@ -20,6 +20,7 @@
 #include "mgl2/canvas.h"
 #include "mgl2/canvas_cf.h"
 #include "mgl2/font.h"
+#include <locale.h>
 #include <time.h>
 #include <algorithm>
 #include <sys/stat.h>

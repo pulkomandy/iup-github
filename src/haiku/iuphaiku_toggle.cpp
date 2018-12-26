@@ -32,17 +32,17 @@
 
 #include "iuphaiku_drv.h"
 
+#define IUP_TOGGLE_BOX 16
 
-void iupdrvToggleAddCheckBox(int *x, int *y)
+void iupdrvToggleAddCheckBox(int *x, int *y, const char* str)
 {
-#ifdef HILDON
-  (*x) += 30+4;
-  if ((*y) < 30) (*y) = 30; /* minimum height */
-#else
-  (*x) += 16+4;
-  if ((*y) < 16) (*y) = 16; /* minimum height */
-#endif
-  (*y) += 4;
+  /* has margins too */
+  (*x) += 2+IUP_TOGGLE_BOX+2;
+  if ((*y) < 2+IUP_TOGGLE_BOX+2) (*y) = 2+IUP_TOGGLE_BOX+2; /* minimum height */
+  else (*y) += 2+2;
+
+  if (str && str[0]) /* add spacing between check box and text */
+    (*x) += 8;
 }
 
 static int beToggleGetCheck(Ihandle* ih)
@@ -205,7 +205,7 @@ static int gtkToggleMapMethod(Ihandle* ih)
   Ihandle* radio = iupRadioFindToggleParent(ih);
 
   if (radio)
-    ih->data->radio = 1;
+    ih->data->is_radio = 1;
   
   char* value = iupAttribGet(ih, "IMAGE");
   if (value)

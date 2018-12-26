@@ -609,6 +609,7 @@ endif
 ifeq "$(TEC_SYSNAME)" "Haiku"
   STDFLAGS += -Wno-multichar
   LIBS += be textencoding tracker
+  STDDEFS += -D_BSD_SOURCE
 endif
 
 ifneq ($(findstring Linux, $(TEC_UNAME)), )
@@ -1043,10 +1044,14 @@ ifdef USE_LUA
     endif
   endif
 
-  LUA_INC ?= $(LUA)/include
+  ifneq ($(findstring Haiku, $(TEC_UNAME)), )
+    LUA_INC ?= $(shell pkg-config --cflags-only-I lua | cut -b 3-)
+  else
+    LUA_INC ?= $(LUA)/include
+  endif
   INCLUDES += $(LUA_INC)
 
-  LUA_BIN ?= $(LUA)/bin/$(TEC_UNAME)
+  LUA_BIN ?= $(shell finddir B_SYSTEM_BIN_DIRECTORY)
   ifdef USE_BIN2C_LUA
     BIN2C := $(LUA_BIN)/lua$(LUA_SFX) $(BIN2C_PATH)bin2c.lua
   else
