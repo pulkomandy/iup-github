@@ -2,8 +2,12 @@ ifeq ($(OS), Windows_NT)
   WINLIBS = iupole iupfiledlg
 endif
 
-.PHONY: do_all iup iupgtk iupmot iupcd iupcontrols iupgl iupglcontrols iup_plot iup_mglplot iup_scintilla iupim iupimglib ledc iupview iuplua5 iupluaconsole iupluascripter iupole iupfiledlg iupweb iuptuio
-do_all: iup iupcd iupcontrols iupgl iupglcontrols iup_plot iup_mglplot iup_scintilla iupim iupimglib $(WINLIBS) iupweb iuptuio ledc iupview iuplua5 iupluaconsole iupluascripter
+ifneq ($(shell uname), Haiku)
+  SCINTILLA = iup_scintilla iupluascripter
+endif
+
+.PHONY: do_all iup iupgtk iupmot iupcd iupcontrols iupgl iupglcontrols iup_plot iup_mglplot $(SCINTILLA) iupim iupimglib ledc iupview iuplua5 iupluaconsole iupole iupfiledlg iupweb iuptuio
+do_all: iup iupcd iupcontrols iupgl iupglcontrols iup_plot iup_mglplot $(SCINTILLA) iupim iupimglib $(WINLIBS) iupweb iuptuio ledc iupview iuplua5 iupluaconsole
 
 iup iupgtk iupmot:
 	@$(MAKE) --no-print-directory -C ./src/ $@

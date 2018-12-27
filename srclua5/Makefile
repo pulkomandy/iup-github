@@ -5,8 +5,12 @@ else
   TECMAKE_CMD = $(MAKE) --no-print-directory -f ../tecmake.mak
 endif
 
-.PHONY: do_all iuplua iupluacd iupluacontrols iupluagl iupluaglcontrols iuplua_plot iuplua_mglplot iuplua_scintilla iupluaim iupluaimglib iupluatuio iupluaole iupluafiledlg iupluaweb iupluascripterdlg
-do_all: iuplua iupluacd iupluacontrols iupluagl iupluaglcontrols iuplua_plot iuplua_mglplot iuplua_scintilla iupluaim iupluaimglib iupluatuio $(WINLIBS) iupluaweb iupluascripterdlg
+ifneq ($(shell uname), Haiku)
+  SCINTILLA = iuplua_scintilla iupluascripterdlg
+endif
+
+.PHONY: do_all iuplua iupluacd iupluacontrols iupluagl iupluaglcontrols iuplua_plot iuplua_mglplot $(SCINTILLA) iupluaim iupluaimglib iupluatuio iupluaole iupluafiledlg iupluaweb
+do_all: iuplua iupluacd iupluacontrols iupluagl iupluaglcontrols iuplua_plot iuplua_mglplot $(SCINTILLA) iupluaim iupluaimglib iupluatuio $(WINLIBS) iupluaweb
 
 iuplua:
 	@$(TECMAKE_CMD)  
