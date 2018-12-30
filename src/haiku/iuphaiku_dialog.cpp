@@ -41,6 +41,11 @@
                      Utilities
 ****************************************************************/
 
+void iupdrvDialogSetParent(Ihandle* ih, InativeHandle* parent)
+{
+	UNIMPLEMENTED
+}
+
 int iupdrvDialogIsVisible(Ihandle* ih)
 {
   BWindow* win = (BWindow*)ih->handle;
