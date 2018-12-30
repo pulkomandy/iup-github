@@ -385,7 +385,7 @@ void iupdrvTabsInitClass(Iclass* ic)
 	IUPAF_NO_INHERIT);
   iupClassRegisterAttributeId(ic, "TABIMAGE", NULL, gtkTabsSetTabImageAttrib,
 	IUPAF_IHANDLENAME|IUPAF_NO_INHERIT);
-  iupClassRegisterAttribute(ic, "PADDING", iupTabsGetPaddingAttrib,
+  iupClassRegisterAttribute(ic, "TABPADDING", iupTabsGetTabPaddingAttrib,
 	gtkTabsSetPaddingAttrib, IUPAF_SAMEASSYSTEM, "0x0", IUPAF_NOT_MAPPED|IUPAF_NO_INHERIT);
 
   /* NOT supported */
