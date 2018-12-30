@@ -69,7 +69,8 @@ ifdef USE_HAIKU
          haiku/iuphaiku_image.cpp haiku/iuphaiku_info.cpp haiku/iuphaiku_label.cpp \
          haiku/iuphaiku_list.cpp haiku/iuphaiku_loop.cpp haiku/iuphaiku_menu.cpp \
          haiku/iuphaiku_messagedlg.c haiku/iuphaiku_open.cpp haiku/iuphaiku_progressbar.cpp \
-         haiku/iuphaiku_tabs.cpp haiku/iuphaiku_text.cpp haiku/iuphaiku_timer.cpp \
+         haiku/iuphaiku_str.cpp haiku/iuphaiku_tabs.cpp \
+		 haiku/iuphaiku_text.cpp haiku/iuphaiku_timer.cpp \
          haiku/iuphaiku_tips.c haiku/iuphaiku_toggle.cpp haiku/iuphaiku_tree.cpp \
          haiku/iuphaiku_val.cpp iup_datepick.c
   INCLUDES += haiku
