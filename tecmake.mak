@@ -610,6 +610,8 @@ ifeq "$(TEC_SYSNAME)" "Haiku"
   STDFLAGS += -Wno-multichar
   LIBS += be textencoding tracker
   STDDEFS += -D_BSD_SOURCE
+  X11_LIBS :=
+  override USE_HAIKU = Yes
 endif
 
 ifneq ($(findstring Linux, $(TEC_UNAME)), )
@@ -1085,7 +1087,11 @@ ifdef USE_IUP
     endif
   else
     ifndef NO_OVERRIDE
-      override USE_MOTIF = Yes
+      ifdef USE_HAIKU
+        override USE_HAIKU = Yes
+	  else
+        override USE_MOTIF = Yes
+      endif
     endif
   endif
   
