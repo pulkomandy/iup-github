@@ -211,6 +211,11 @@ void iupdrvDrawFocusRect(Ihandle* ih, void* _gc, int x, int y, int w, int h)
 	UNIMPLEMENTED
 }
 
+void iupdrvPaintFocusRect(Ihandle* ih, void* _gc, int x, int y, int w, int h)
+{
+	UNIMPLEMENTED
+}
+
 void iupdrvBaseRegisterCommonAttrib(Iclass* ic)
 {
   // Other drivers seems to register some info about fonts and tooltips here.

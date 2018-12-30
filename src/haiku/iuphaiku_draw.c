@@ -18,7 +18,7 @@
 #include "iup_str.h"
 #include "iup_object.h"
 #include "iup_image.h"
-#include "iup_draw.h"
+#include "iup_drvdraw.h"
 
 #include "iuphaiku_drv.h"
 
@@ -34,7 +34,7 @@ struct _IdrawCanvas{
   */
 };
 
-IdrawCanvas* iupDrawCreateCanvas(Ihandle* ih)
+IdrawCanvas* iupdrvDrawCreateCanvas(Ihandle* ih)
 {
   IdrawCanvas* dc = calloc(1, sizeof(IdrawCanvas));
 
@@ -45,83 +45,83 @@ UNIMPLEMENTED
   return dc;
 }
 
-void iupDrawKillCanvas(IdrawCanvas* dc)
+void iupdrvDrawKillCanvas(IdrawCanvas* dc)
 {
 UNIMPLEMENTED
 
   free(dc);
 }
 
-void iupDrawUpdateSize(IdrawCanvas* dc)
+void iupdrvDrawUpdateSize(IdrawCanvas* dc)
 {
 UNIMPLEMENTED
 }
 
-void iupDrawFlush(IdrawCanvas* dc)
+void iupdrvDrawFlush(IdrawCanvas* dc)
 {
 UNIMPLEMENTED
 }
 
-void iupDrawGetSize(IdrawCanvas* dc, int *w, int *h)
+void iupdrvDrawGetSize(IdrawCanvas* dc, int *w, int *h)
 {
   if (w) *w = dc->w;
   if (h) *h = dc->h;
 }
 
-void iupDrawParentBackground(IdrawCanvas* dc)
+void iupdrvDrawParentBackground(IdrawCanvas* dc)
 {
   unsigned char r=0, g=0, b=0;
   char* color = iupBaseNativeParentGetBgColorAttrib(dc->ih);
   iupStrToRGB(color, &r, &g, &b);
-  iupDrawRectangle(dc, 0, 0, dc->w-1, dc->h-1, r, g, b, IUP_DRAW_FILL);
+  iupdrvDrawRectangle(dc, 0, 0, dc->w-1, dc->h-1, r, g, b, IUP_DRAW_FILL);
 }
 
-void iupDrawRectangle(IdrawCanvas* dc, int x1, int y1, int x2, int y2, unsigned char r, unsigned char g, unsigned char b, int style)
+void iupdrvDrawRectangle(IdrawCanvas* dc, int x1, int y1, int x2, int y2, unsigned char r, unsigned char g, unsigned char b, int style)
 {
 	UNIMPLEMENTED
 }
 
-void iupDrawLine(IdrawCanvas* dc, int x1, int y1, int x2, int y2, unsigned char r, unsigned char g, unsigned char b, int style)
+void iupdrvDrawLine(IdrawCanvas* dc, int x1, int y1, int x2, int y2, unsigned char r, unsigned char g, unsigned char b, int style)
 {
 	UNIMPLEMENTED
 }
 
-void iupDrawArc(IdrawCanvas* dc, int x1, int y1, int x2, int y2, double a1, double a2, unsigned char r, unsigned char g, unsigned char b, int style)
+void iupdrvDrawArc(IdrawCanvas* dc, int x1, int y1, int x2, int y2, double a1, double a2, unsigned char r, unsigned char g, unsigned char b, int style)
 {
 	UNIMPLEMENTED
 }
 
-void iupDrawPolygon(IdrawCanvas* dc, int* points, int count, unsigned char r, unsigned char g, unsigned char b, int style)
+void iupdrvDrawPolygon(IdrawCanvas* dc, int* points, int count, unsigned char r, unsigned char g, unsigned char b, int style)
 {
 	UNIMPLEMENTED
 }
 
-void iupDrawSetClipRect(IdrawCanvas* dc, int x1, int y1, int x2, int y2)
+void iupdrvDrawSetClipRect(IdrawCanvas* dc, int x1, int y1, int x2, int y2)
 {
 	UNIMPLEMENTED
 }
 
-void iupDrawResetClip(IdrawCanvas* dc)
+void iupdrvDrawResetClip(IdrawCanvas* dc)
 {
 	UNIMPLEMENTED
 }
 
-void iupDrawText(IdrawCanvas* dc, const char* text, int len, int x, int y, unsigned char r, unsigned char g, unsigned char b, const char* font)
+void iupdrvDrawText(IdrawCanvas* dc, const char* text, int len, int x, int y, unsigned char r, unsigned char g, unsigned char b, const char* font)
 {
 	UNIMPLEMENTED
 }
 
-void iupDrawImage(IdrawCanvas* dc, const char* name, int make_inactive, int x, int y, int *img_w, int *img_h)
+void iupdrvDrawImage(IdrawCanvas* dc, const char* name, int make_inactive, int x, int y)
 {
 	UNIMPLEMENTED
 }
 
-void iupDrawSelectRect(IdrawCanvas* dc, int x, int y, int w, int h)
+void iupdrvDrawSelectRect(IdrawCanvas* dc, int x, int y, int w, int h)
 {
 	UNIMPLEMENTED
 }
 
-void iupDrawFocusRect(IdrawCanvas* dc, int x, int y, int w, int h)
+void iupdrvDrawFocusRect(IdrawCanvas* dc, int x, int y, int w, int h)
 {
 	UNIMPLEMENTED
 }

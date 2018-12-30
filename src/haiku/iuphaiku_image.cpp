@@ -25,8 +25,17 @@
 
 #define UNIMPLEMENTED printf("%s (%s %d) UNIMPLEMENTED\n",__func__,__FILE__,__LINE__);
 
+void iupdrvImageGetData(void* handle, unsigned char* imgdata)
+{
+	/* planes are packed and top-bottom in this imgdata */
+	BBitmap* bitmap = (BBitmap*)handle;
+
+	memcpy(imgdata, bitmap->Bits(), bitmap->BitsLength());
+}
+
 void iupdrvImageGetRawData(void* handle, unsigned char* imgdata)
 {
+  /* planes are separated in imgdata */
 	UNIMPLEMENTED
 }
 
