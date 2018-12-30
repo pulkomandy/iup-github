@@ -59,9 +59,11 @@ SRC = iup_array.c iup_callback.c iup_dlglist.c iup_attrib.c iup_focus.c iup_font
 
 ifdef USE_HAIKU
   # Since Haiku has no GTK and no Motif, we can only use the native implementation
-  SRC += haiku/iuphaiku_button.cpp haiku/iuphaiku_canvas.cpp haiku/iuphaiku_clipboard.c \
-         haiku/iuphaiku_common.cpp haiku/iuphaiku_dialog.cpp \
-         haiku/iuphaiku_dragdrop.c haiku/iuphaiku_draw.c haiku/iuphaiku_filedlg.cpp \
+  SRC += haiku/iuphaiku_button.cpp haiku/iuphaiku_calendar.cpp \
+		 haiku/iuphaiku_canvas.cpp haiku/iuphaiku_clipboard.c \
+         haiku/iuphaiku_colordlg.cpp haiku/iuphaiku_common.cpp \
+		 haiku/iuphaiku_dialog.cpp haiku/iuphaiku_dragdrop.c \
+		 haiku/iuphaiku_draw.c haiku/iuphaiku_filedlg.cpp \
          haiku/iuphaiku_focus.cpp haiku/iuphaiku_font.cpp haiku/iuphaiku_fontdlg.c \
          haiku/iuphaiku_frame.cpp haiku/iuphaiku_globalattrib.c haiku/iuphaiku_help.c \
          haiku/iuphaiku_image.cpp haiku/iuphaiku_info.cpp haiku/iuphaiku_label.cpp \
@@ -69,7 +71,7 @@ ifdef USE_HAIKU
          haiku/iuphaiku_messagedlg.c haiku/iuphaiku_open.cpp haiku/iuphaiku_progressbar.cpp \
          haiku/iuphaiku_tabs.cpp haiku/iuphaiku_text.cpp haiku/iuphaiku_timer.cpp \
          haiku/iuphaiku_tips.c haiku/iuphaiku_toggle.cpp haiku/iuphaiku_tree.cpp \
-         haiku/iuphaiku_val.cpp
+         haiku/iuphaiku_val.cpp iup_datepick.c
   INCLUDES += haiku
 #  DEFINES += 
 else
