@@ -146,7 +146,7 @@ static BFont* beFontCreateNativeFont(Ihandle* ih, const char* value)
 }
 
 
-int iupdrvSetStandardFontAttrib(Ihandle* ih, const char* value)
+int iupdrvSetFontAttrib(Ihandle* ih, const char* value)
 {
   BFont* bfont = beFontCreateNativeFont(ih, value);
   if(!bfont)
@@ -159,6 +159,7 @@ int iupdrvSetStandardFontAttrib(Ihandle* ih, const char* value)
     so the font is enable for size calculation. */
   if (ih->handle && (ih->iclass->nativetype != IUP_TYPEVOID))
   {
+	//gtkFontUpdatewidget
 	BHandler* handler = (BHandler*)ih->handle;
 	BView* view = viewFromHandler(handler);
 	if (!view) {
@@ -166,7 +167,6 @@ int iupdrvSetStandardFontAttrib(Ihandle* ih, const char* value)
 	} else {
 		view->SetFont(bfont);
 	}
-    //iupgtkFontUpdatePangoLayout(ih, gtkFontGetWidgetPangoLayout(ih));
   }
 
   return 1;
@@ -183,7 +183,7 @@ static BFont* beFontGet(Ihandle *ih)
 {
   BFont* bfont = (BFont*)iupAttribGet(ih, "_IUP_HAIKUFONT");
   if(!bfont)
-    bfont = beFontCreateNativeFont(ih, iupGetFontAttrib(ih));
+    bfont = beFontCreateNativeFont(ih, iupGetFontFaceAttrib(ih));
   return bfont;
 }
 
