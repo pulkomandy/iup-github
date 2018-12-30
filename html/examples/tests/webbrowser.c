@@ -119,6 +119,7 @@ static int load_cb(Ihandle* self)
 
 void WebBrowserTest(void)
 {
+#ifdef USE_IUPWEB
   Ihandle *txt, *dlg, *web;
   Ihandle *btLoad, *btReload, *btBack, *btForward, *btStop;
 #ifndef WIN32
@@ -173,6 +174,7 @@ void WebBrowserTest(void)
 
   // Shows dialog
   IupShow(dlg);
+#endif
 }
 
 #ifndef BIG_TEST

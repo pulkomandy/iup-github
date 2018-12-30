@@ -172,7 +172,7 @@ static int unmap_cb(Ihandle *ih)
   return IUP_DEFAULT;
 }
 
-void CanvasScrollbarTest1(void)
+void CanvasScrollbarTest(void)
 {
   Ihandle *dlg, *cnv;
 
@@ -204,7 +204,7 @@ int main(int argc, char* argv[])
 {
   IupOpen(&argc, &argv);
 
-  CanvasScrollbarTest1();
+  CanvasScrollbarTest();
 
   IupMainLoop();
 

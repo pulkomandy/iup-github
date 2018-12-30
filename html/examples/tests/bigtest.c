@@ -22,10 +22,14 @@ export G_SLICE=always-malloc
 #include "iupfiledlg.h"
 #endif
 
+#ifdef __HAIKU__
+#define NO_SCINTILLA_TEST
+#endif
+
 /* Must define BIG_TEST on the Project and include in the build all test files */
 #ifdef BIG_TEST
 void ButtonTest(void);
-void CanvasScrollbarTest1(void);
+void CanvasScrollbarTest(void);
 void CanvasTest(void);
 void CanvasCDDBufferTest(void);
 void CanvasCDSimpleTest(void);

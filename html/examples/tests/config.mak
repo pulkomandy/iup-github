@@ -168,14 +168,16 @@ else
 endif
 
 SRC += webbrowser.c
-USE_IUPWEB = Yes
 
+ifeq ($(findstring Haiku, $(TEC_SYSNAME)), )
+USE_IUPWEB = Yes
 SRC += scintilla.c
 ifneq ($(findstring Win, $(TEC_SYSNAME)), )
   LIBS += iup_scintilla imm32
 else
   SLIB += $(IUP_LIB)/libiup_scintilla.a
   LIBS += atk-1.0
+endif
 endif
 
 USE_IM = Yes
