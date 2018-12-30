@@ -24,6 +24,7 @@ void IupImageLibOpen(void)
 #if defined(WIN32)
   /* iupImglibBaseLibWin16x16Open(); */
   iupImglibBaseLibWin32x32Open();
+#elif defined(__HAIKU__)
 #elif defined(MOTIF)
   iupImglibBaseLibMot16x16Open();
 #elif defined(GTK3)
@@ -50,6 +51,7 @@ void IupImageLibOpen(void)
 
 #ifdef WIN32
   iupImglibIconsWin48x48Open();
+#elif defined(__HAIKU__)
 #elif defined(MOTIF)
 #elif defined(GTK3)
   iupImglibIconsGtk348x48Open();

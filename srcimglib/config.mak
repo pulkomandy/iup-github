@@ -21,6 +21,9 @@ ifneq ($(findstring Win, $(TEC_SYSNAME)), )
   SRC += iup_imglib_logos48x48.c iup_imglib_logos32x32.c
   SRC += iup_imglib_iconswin48x48.c
 else
+  ifneq ($(findstring Haiku, $(TEC_SYSNAME)), )
+    SRC += iup_imglib_logos48x48.c iup_imglib_logos32x32.c
+  else
   ifdef GTK_DEFAULT
     ifdef USE_GTK3
       SRC += iup_imglib_basegtk324x24.c 
@@ -34,6 +37,7 @@ else
   else
     SRC += iup_imglib_basemot16x16_8bpp.c
     SRC +=  iup_imglib_logos48x48_8bpp.c iup_imglib_logos32x32_8bpp.c
+  endif
   endif
 endif
 
