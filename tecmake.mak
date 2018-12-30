@@ -582,6 +582,10 @@ ifneq ($(findstring MacOS, $(TEC_UNAME)), )
   FREETYPE_INC := /sw/include/freetype2
 endif
 
+ifneq ($(findstring Haiku, $(TEC_UNAME)), )
+  FREETYPE_INC := $(shell pkg-config --cflags-only-I freetype2 | cut -b 3-)
+endif
+
 # Definitions for GTK
 ifdef GTK_BASE
   GTK := $(GTK_BASE)
@@ -654,6 +658,11 @@ ifneq ($(findstring CentOS, $(TEC_UNAME)), )
     STDFLAGS += -fopenmp
     LIBS += gomp
   endif
+endif
+
+ifneq ($(findstring Haiku, $(TEC_UNAME)), )
+  UNIX_POSIX = Yes
+  STDLDFLAGS := -shared -Wl,-soname=lib$(TARGETNAME).so
 endif
 
 ifneq ($(findstring IRIX, $(TEC_UNAME)), )
