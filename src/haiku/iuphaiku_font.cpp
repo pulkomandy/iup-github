@@ -228,7 +228,32 @@ void iupdrvFontGetMultiLineStringSize(Ihandle* ih, const char* str, int *w, int 
   }
 
   if (w) *w = max_w;
-  if (h) *h = height * iupStrLineCount(str);
+  if (h) *h = height * iupStrLineCount(str, strlen(str));
+}
+
+void iupdrvFontGetTextSize(const char* fontName, const char* str, int len, int *w, int *h)
+{
+	BFont* font = beFindFont(fontName);
+
+	if (font == NULL)
+		return;
+
+	*w = font->StringWidth(str, len);
+	*h = beFontHeight(font);
+}
+
+void iupdrvFontGetFontDim(const char* fontName, int *max_width, int *line_height, int *ascent, int *descent)
+{
+  BFont* font = beFindFont(fontName);
+  if (font == NULL)
+    return;
+  font_height height;
+  font->GetHeight(&height);
+
+  if (ascent) *ascent = height.ascent;
+  if (descent) *descent = height.descent;
+  if (line_height) *line_height = height.ascent + height.descent + height.leading;
+  if (max_width) { UNIMPLEMENTED; *max_width = 0; } // TODO
 }
 
 int iupdrvFontGetStringWidth(Ihandle* ih, const char* str)

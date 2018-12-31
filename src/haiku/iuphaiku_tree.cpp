@@ -324,7 +324,7 @@ static int gtkTreeSetImageAttrib(Ihandle* ih, int id, const char* value)
 
 static int gtkTreeSetImageBranchExpandedAttrib(Ihandle* ih, const char* value)
 {
-  ih->data->def_image_expanded = iupImageGetImage(value, ih, 0);
+  ih->data->def_image_expanded = iupImageGetImage(value, ih, 0, NULL);
 
   /* Update all images */
   gtkTreeUpdateImages(ih, ITREE_UPDATEIMAGE_EXPANDED);
@@ -334,7 +334,7 @@ static int gtkTreeSetImageBranchExpandedAttrib(Ihandle* ih, const char* value)
 
 static int gtkTreeSetImageBranchCollapsedAttrib(Ihandle* ih, const char* value)
 {
-  ih->data->def_image_collapsed = iupImageGetImage(value, ih, 0);
+  ih->data->def_image_collapsed = iupImageGetImage(value, ih, 0, NULL);
 
   /* Update all images */
   gtkTreeUpdateImages(ih, ITREE_UPDATEIMAGE_COLLAPSED);
@@ -344,7 +344,7 @@ static int gtkTreeSetImageBranchCollapsedAttrib(Ihandle* ih, const char* value)
 
 static int gtkTreeSetImageLeafAttrib(Ihandle* ih, const char* value)
 {
-  ih->data->def_image_leaf = iupImageGetImage(value, ih, 0);
+  ih->data->def_image_leaf = iupImageGetImage(value, ih, 0, NULL);
 
   /* Update all images */
   gtkTreeUpdateImages(ih, ITREE_UPDATEIMAGE_LEAF);

@@ -68,30 +68,27 @@ void iupdrvDrawGetSize(IdrawCanvas* dc, int *w, int *h)
   if (h) *h = dc->h;
 }
 
-void iupdrvDrawParentBackground(IdrawCanvas* dc)
-{
-  unsigned char r=0, g=0, b=0;
-  char* color = iupBaseNativeParentGetBgColorAttrib(dc->ih);
-  iupStrToRGB(color, &r, &g, &b);
-  iupdrvDrawRectangle(dc, 0, 0, dc->w-1, dc->h-1, r, g, b, IUP_DRAW_FILL);
-}
-
-void iupdrvDrawRectangle(IdrawCanvas* dc, int x1, int y1, int x2, int y2, unsigned char r, unsigned char g, unsigned char b, int style)
+void iupdrvDrawRectangle(IdrawCanvas* dc, int x1, int y1, int x2, int y2, long color, int style, int line_width)
 {
 	UNIMPLEMENTED
 }
 
-void iupdrvDrawLine(IdrawCanvas* dc, int x1, int y1, int x2, int y2, unsigned char r, unsigned char g, unsigned char b, int style)
+void iupdrvDrawLine(IdrawCanvas* dc, int x1, int y1, int x2, int y2, long color, int style, int line_width)
 {
 	UNIMPLEMENTED
 }
 
-void iupdrvDrawArc(IdrawCanvas* dc, int x1, int y1, int x2, int y2, double a1, double a2, unsigned char r, unsigned char g, unsigned char b, int style)
+void iupdrvDrawArc(IdrawCanvas* dc, int x1, int y1, int x2, int y2, double a1, double a2, long color, int style, int line_width)
 {
 	UNIMPLEMENTED
 }
 
-void iupdrvDrawPolygon(IdrawCanvas* dc, int* points, int count, unsigned char r, unsigned char g, unsigned char b, int style)
+void iupdrvDrawPolygon(IdrawCanvas* dc, int* points, int count, long color, int style, int line_width)
+{
+	UNIMPLEMENTED
+}
+
+void iupdrvDrawGetClipRect(IdrawCanvas* dc, int *x1, int *y1, int *x2, int *y2)
 {
 	UNIMPLEMENTED
 }
@@ -106,12 +103,12 @@ void iupdrvDrawResetClip(IdrawCanvas* dc)
 	UNIMPLEMENTED
 }
 
-void iupdrvDrawText(IdrawCanvas* dc, const char* text, int len, int x, int y, unsigned char r, unsigned char g, unsigned char b, const char* font)
+void iupdrvDrawText(IdrawCanvas* dc, const char* text, int len, int x, int y, int w, int h, long color, const char* font, int flags, double text_orientation)
 {
 	UNIMPLEMENTED
 }
 
-void iupdrvDrawImage(IdrawCanvas* dc, const char* name, int make_inactive, int x, int y)
+void iupdrvDrawImage(IdrawCanvas* dc, const char* name, int make_inactive, const char* bgcolor, int x, int y, int w, int h)
 {
 	UNIMPLEMENTED
 }

@@ -126,7 +126,7 @@ int iupdrvGetScreenDepth(void)
 	}
 }
 
-float iupdrvGetScreenDpi(void)
+double iupdrvGetScreenDpi(void)
 {
 	UNIMPLEMENTED
 		return 0;

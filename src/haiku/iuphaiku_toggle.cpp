@@ -56,7 +56,7 @@ static void beToggleUpdateImage(Ihandle* ih, int active, int check)
   char* name;
   BButton* button = (BButton*)ih->handle;
 
-  BBitmap* bitmap = (BBitmap*)iupImageGetImage(iupAttribGet(ih, "IMAGE"), ih, check);
+  BBitmap* bitmap = (BBitmap*)iupImageGetImage(iupAttribGet(ih, "IMAGE"), ih, check, NULL);
   button->SetIcon(bitmap);
 
 #if 0

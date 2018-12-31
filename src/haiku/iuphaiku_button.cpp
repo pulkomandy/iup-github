@@ -99,7 +99,7 @@ static int gtkButtonSetFgColorAttrib(Ihandle* ih, const char* value)
 }
 
 /*
-static int gtkButtonSetStandardFontAttrib(Ihandle* ih, const char* value)
+static int gtkButtonSetFontAttrib(Ihandle* ih, const char* value)
 {
 	UNIMPLEMENTED
   return 0;
@@ -107,13 +107,13 @@ static int gtkButtonSetStandardFontAttrib(Ihandle* ih, const char* value)
 */
 
 /* FIXME this is copypasted from the same method for Toggle. we should share it. */
-static void gtkButtonSetPixbuf(Ihandle* ih, const char* name, int make_inactive)
+static void haikuButtonSetBitmap(Ihandle* ih, const char* name, int make_inactive)
 {
   BButton* button = (BButton*)ih->handle;
 
   if (name)
   {
-	BBitmap* bitmap = (BBitmap*)iupImageGetImage(name, ih, make_inactive);
+	BBitmap* bitmap = (BBitmap*)iupImageGetImage(name, ih, make_inactive, NULL);
 	button->SetIcon(bitmap);
   }
 }
@@ -123,14 +123,14 @@ static int gtkButtonSetImageAttrib(Ihandle* ih, const char* value)
   if (ih->data->type & IUP_BUTTON_IMAGE)
   {
     if (iupdrvIsActive(ih))
-      gtkButtonSetPixbuf(ih, value, 0);
+      haikuButtonSetBitmap(ih, value, 0);
     else
     {
       if (!iupAttribGet(ih, "IMINACTIVE"))
       {
         /* if not active and IMINACTIVE is not defined 
            then automaticaly create one based on IMAGE */
-        gtkButtonSetPixbuf(ih, value, 1); /* make_inactive */
+        haikuButtonSetBitmap(ih, value, 1); /* make_inactive */
       }
     }
     return 1;
@@ -146,12 +146,12 @@ static int gtkButtonSetImInactiveAttrib(Ihandle* ih, const char* value)
     if (!iupdrvIsActive(ih))
     {
       if (value)
-        gtkButtonSetPixbuf(ih, value, 0);
+        haikuButtonSetBitmap(ih, value, 0);
       else
       {
         /* if not defined then automaticaly create one based on IMAGE */
         char* name = iupAttribGet(ih, "IMAGE");
-        gtkButtonSetPixbuf(ih, name, 1); /* make_inactive */
+        haikuButtonSetBitmap(ih, name, 1); /* make_inactive */
       }
     }
     return 1;
@@ -169,19 +169,19 @@ static int gtkButtonSetActiveAttrib(Ihandle* ih, const char* value)
     {
       char* name = iupAttribGet(ih, "IMINACTIVE");
       if (name)
-        gtkButtonSetPixbuf(ih, name, 0);
+        haikuButtonSetBitmap(ih, name, 0);
       else
       {
         /* if not defined then automaticaly create one based on IMAGE */
         name = iupAttribGet(ih, "IMAGE");
-        gtkButtonSetPixbuf(ih, name, 1); /* make_inactive */
+        haikuButtonSetBitmap(ih, name, 1); /* make_inactive */
       }
     }
     else
     {
       /* must restore the normal image */
       char* name = iupAttribGet(ih, "IMAGE");
-      gtkButtonSetPixbuf(ih, name, 0);
+      haikuButtonSetBitmap(ih, name, 0);
     }
   }
 
