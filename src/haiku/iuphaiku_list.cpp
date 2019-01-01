@@ -250,10 +250,7 @@ static char* haikuListGetValueAttrib(Ihandle* ih)
 
   if(listview)
   {
-	BStringItem* item = (BStringItem*)
-	  listview->ItemAt(listview->CurrentSelection());
-	fprintf(stderr, "IEMTXT %s", item->Text());
-	return (char*)item->Text();
+	return iupStrReturnInt(listview->CurrentSelection() + 1);
   } else {
     fprintf(stderr, "View hierarchy problem\n");
   }
