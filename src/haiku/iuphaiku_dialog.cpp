@@ -64,14 +64,19 @@ void iupdrvDialogGetSize(Ihandle* ih, InativeHandle* handle, int *w, int *h)
 void iupdrvDialogSetVisible(Ihandle* ih, int visible)
 {
   BHandler* handler = (BHandler*)ih->handle;
+
+  if (!handler->LockLooper())
+	  return;
+
   BWindow* window = dynamic_cast<BWindow*>(handler);
   if(window) {
     if(visible)
       window->Show();
     else
 	  window->Hide();
-	return;
   }
+
+  handler->UnlockLooper();
 
   // TODO We can get there even though the window is already destroyed...
 }

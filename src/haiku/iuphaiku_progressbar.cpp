@@ -38,8 +38,10 @@ static int haikuProgressBarSetValueAttrib(Ihandle* ih, const char* value)
   iProgressBarCropValue(ih);
 
   BStatusBar* bar = (BStatusBar*)ih->handle;
+  bar->LockLooper();
   float val = bar->CurrentValue();
   bar->Update(ih->data->value - val);
+  bar->UnlockLooper();
 
   return 1;
 }

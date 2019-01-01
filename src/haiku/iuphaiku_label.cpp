@@ -108,10 +108,13 @@ static void beLabelSetPixbuf(Ihandle* ih, const char* name, int make_inactive)
 
   if (name)
   {
-    BBitmap* bitmap = (BBitmap*)iupImageGetImage(name, ih, make_inactive);
+    BBitmap* bitmap = (BBitmap*)iupImageGetImage(name, ih, make_inactive, NULL);
 	// TODO we may need to play with source and destination rects to align the
 	// image here ? Or maybe it's simpler to handle that at view level...
-	widget->SetViewBitmap(bitmap, B_FOLLOW_NONE, 0);
+	if (widget->LockLooper()) {
+		widget->SetViewBitmap(bitmap, B_FOLLOW_NONE, 0);
+		widget->UnlockLooper();
+	}
   } else {
 	widget->ClearViewBitmap();
   }

@@ -81,12 +81,18 @@ void iupdrvBaseLayoutUpdateMethod(Ihandle *ih)
 void iupdrvBaseUnMapMethod(Ihandle* ih)
 {
   BHandler* handler = (BHandler*)ih->handle;
+
+  if (!handler->LockLooper())
+	  return;
+
   BView* view = dynamic_cast<BView*>(handler);
   BWindow* window = dynamic_cast<BWindow*>(handler);
   if(view) {
+	handler->UnlockLooper();
 	view->RemoveSelf();
     delete view;
   } else if(window) {
+	handler->UnlockLooper();
     window->Quit();
 	// The window will delete itself
   } else if(handler != NULL)
@@ -138,7 +144,11 @@ int iupdrvIsActive(Ihandle *ih)
 {
 	BHandler* handler = (BHandler*)ih->handle;
 
+	if (!handler->LockLooper())
+		return false;
+
 	BControl* control = dynamic_cast<BControl*>(handler);
+	handler->UnlockLooper();
 	if (control && !control->IsEnabled())
 	  return false;
 	return true;
@@ -148,12 +158,17 @@ void iupdrvSetActive(Ihandle* ih, int enable)
 {
 	BHandler* handler = (BHandler*)ih->handle;
 
+	if (!handler->LockLooper())
+		return;
+
 	BView* view = dynamic_cast<BView*>(handler);
 	BWindow* window = dynamic_cast<BWindow*>(handler);
 	if (view)
 	  view->MakeFocus(enable);
 	if (window)
 	  window->Activate(enable);
+
+	handler->UnlockLooper();
 }
 
 void iuphaikuBaseSetBgColor(InativeHandle* handle, unsigned char r, unsigned char g, unsigned char b)
