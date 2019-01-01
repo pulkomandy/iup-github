@@ -76,12 +76,6 @@ void iupdrvListAddBorders(Ihandle* ih, int *x, int *y)
   }
 }
 
-int iupdrvListGetCount(Ihandle* ih)
-{
-  BListView* listview = (BListView*)ih->handle;
-  return listview->CountItems();
-}
-
 BListView* iuphaikuGetListView(BView* view)
 {
   // TODO maybe it is easier to get ScrollBar->Target ?
@@ -100,6 +94,25 @@ BListView* iuphaikuGetListView(BView* view)
   }
 
   return listview;
+}
+
+int iupdrvListGetCount(Ihandle* ih)
+{
+  BMenuField* menu = dynamic_cast<BMenuField*>((BView*)ih->handle);
+  if(menu)
+  {
+    return menu->Menu()->CountItems();
+  }
+
+  BListView* listview = iuphaikuGetListView((BView*)ih->handle);
+  if(listview)
+  {
+    return listview->CountItems();
+  } else {
+    fprintf(stderr, "View hierarchy problem\n");
+  }
+
+  return 0;
 }
 
 void iupdrvListAppendItem(Ihandle* ih, const char* value)
