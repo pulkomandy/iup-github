@@ -218,9 +218,8 @@ void iupdrvPaintFocusRect(Ihandle* ih, void* _gc, int x, int y, int w, int h)
 
 void iupdrvBaseRegisterCommonAttrib(Iclass* ic)
 {
-  // Other drivers seems to register some info about fonts and tooltips here.
-  // I'm not sure what is needed and there is no documentation...
-	UNIMPLEMENTED
+	// This can be used to register platform-specific attributes shared between
+	// all widgets. For example GTK stores internal font management stuff here.
 }
 
 void iupdrvBaseRegisterVisualAttrib(Iclass* ic)
@@ -296,6 +295,11 @@ void iupdrvSendMouse(int x, int y, int bt, int status)
 }
 
 void iupdrvSleep(int time)
+{
+	UNIMPLEMENTED
+}
+
+void iupdrvSetAccessibleTitle(Ihandle *ih, const char* title)
 {
 	UNIMPLEMENTED
 }
