@@ -222,7 +222,8 @@ static int gtkTreeSetTitleAttrib(Ihandle* ih, int id, const char* value)
 {
   BOutlineListView* lv = (BOutlineListView*)ih->handle;
   BStringItem* item = (BStringItem*)lv->FullListItemAt(id);
-  item->SetText(value);
+  if (item)
+  	item->SetText(value);
   return 0;
 }
 
